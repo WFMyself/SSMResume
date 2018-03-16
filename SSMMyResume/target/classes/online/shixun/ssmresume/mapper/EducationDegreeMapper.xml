@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="online.shixun.ssmresume.mapper.EducationDegreeMapper">
+  <resultMap id="educationDegreeMap" type="educationDegree">
+    <id column="edd_id" property="id"/>
+    <result column="edd_createtime" property="createtime"/>
+    <result column="edd_language" property="language"/>
+    <result column="edd_name" property="name"/>
+  </resultMap>
+  <select id="findEducation" resultMap="educationDegreeMap" parameterType="educationDegree">
+    SELECT * FROM  t_education_degree
+  </select>
+</mapper>

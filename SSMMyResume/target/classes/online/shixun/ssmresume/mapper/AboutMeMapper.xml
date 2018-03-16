@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="online.shixun.ssmresume.mapper.AboutMeMapper">
+<resultMap id="aboutMeMap" type="aboutMe">
+    <id column="aboutMe_id" property="id"/>
+    <result column="aboutMe_createtime" property="createtime"/>
+    <result column="aboutMe_language" property="language"/>
+    <result column="aboutMe_name" property="name"/>
+    <result column="aboutMe_gender" property="gender"/>
+    <result column="aboutMe_birthday" property="birthday"/>
+    <result column="aboutMe_motto" property="motto"/>
+    <result column="aboutMe_residence" property="residence"/>
+    <result column="aboutMe_email" property="email"/>
+    <result column="aboutMe_mobile" property="mobile"/>
+    <result column="aboutMe_workingyears" property="workingyears"/>
+    <result column="aboutMe_resumefile" property="resumefile"/>
+
+    <association property="educationDegree" resultMap="educationDegreeMap"/>
+    <association property="workingStatus" resultMap="workingStatusMap"/>
+
+</resultMap>
+
+<resultMap id="educationDegreeMap" type="educationDegree">
+    <id column="edd_id" property="id"/>
+    <result column="edd_createtime" property="createtime"/>
+    <result column="edd_language" property="language"/>
+    <result column="edd_name" property="name"/>
+</resultMap>
+
+<resultMap id="workingStatusMap" type="workingStatus">
+    <id column="work_id" property="id"/>
+    <result column="work_language" property="language"/>
+    <result column="work_name" property="name"/>
+    <result column="work_createtime" property="createtime"/>
+</resultMap>
+
+<select id="findAboutMe" parameterType="aboutMe" resultMap="aboutMeMap">
+    SELECT
+    ab.id               AS  aboutMe_id,
+    ab.createtime       AS  aboutMe_createtime,
+    ab.language         AS  aboutMe_language,
+    ab.name             AS  aboutMe_name,
+    ab.gender           AS  aboutMe_gender,
+    ab.birthday         AS  aboutMe_birthday,
+    ab.motto            AS  aboutMe_motto,
+    ab.residence        AS  aboutMe_residence,
+    ab.email            AS  aboutMe_email,
+    ab.mobile           AS  aboutMe_mobile,
+    ab.workingyears     AS  aboutMe_workingyears,
+    ab.mobile           AS  aboutMe_mobile,
+    ab.mobile           AS  aboutMe_mobile,
+    ab.resumefile       AS  aboutMe_resumefile,
+
+    ed.id               AS  edd_id,
+    ed.createtime       AS  edd_createtime,
+    ed.language         AS  edd_language,
+    ed.name             AS  edd_name,
+
+    wk.id               AS  work_id,
+    wk.language         AS  work_language,
+    wk.name             AS  work_name,
+    wk.createtime       AS  work_createtime
+    from
+    t_about_me as ab
+    left join
+    t_working_status as wk on  ab.working_status_id=wk.id
+
+    left join
+    t_education_degree as ed on ab.education_degree_id =ed.id
+      and ab.id=#{id}
+</select>
+
+    <update id="updateAboutMe" parameterType="aboutMe">
+        update
+        t_about_me
+        <set>
+            <if test="name!=null">
+                name=#{name},
+            </if>
+            <if test="gender!=null">
+                gender =#{gender},
+            </if>
+            <if test="birthday!=null">
+                birthday =#{birthday},
+            </if>
+            <if test="motto!=null">
+                motto =#{motto},
+            </if>
+            <if test="residence!=null">
+                residence =#{residence},
+            </if>
+            <if test="email!=null">
+                email =#{email},
+            </if>
+            <if test="mobile!=null">
+                mobile =#{mobile},
+            </if>
+            <if test="workingyears!=null">
+                workingyears =#{workingyears},
+            </if>
+            <if test="resumefile!=null">
+                resumefile =#{resumefile},
+            </if>
+            <if test="workingStatus!=null">
+                workingStatus =#{workingStatus},
+            </if>
+            <if test="educationDegree!=null">
+                educationDegree =#{educationDegree},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+</mapper>

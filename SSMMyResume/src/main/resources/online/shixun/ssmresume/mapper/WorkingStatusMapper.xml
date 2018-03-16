@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="online.shixun.ssmresume.mapper.WorkingStatusMapper">
+    <resultMap id="workingStatusMap" type="workingStatus">
+      <id column="work_id" property="id"/>
+      <result column="work_language" property="language"/>
+      <result column="work_name" property="name"/>
+      <result column="work_createtime" property="createtime"/>
+  </resultMap>
+  <select id="findWorking" resultMap="workingStatusMap" parameterType="workingStatus">
+    SELECT * FROM  t_working_status
+  </select>
+</mapper>

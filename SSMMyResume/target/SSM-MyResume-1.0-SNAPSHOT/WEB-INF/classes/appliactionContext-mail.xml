@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       classpath:org/springframework/beans/factory/xml/spring-beans-4.3.xsd ">
+
+    <!-- 邮件发送器   -->
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="smtp.qq.com" />
+        <property name="protocol" value="smtp"/>
+        <property name="username" value="415892223@qq.com" />
+        <property name="password" value="vynzefnqehrncbaj" />
+        <property name="port" value="587"/>
+        <property name="defaultEncoding" value="UTF-8"></property>
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.timeout">25000</prop>
+
+            </props>
+        </property>
+    </bean>
+
+    <bean id="simpleMailMessage" class="org.springframework.mail.SimpleMailMessage">
+        <!-- 发件人email -->
+        <property name="from" value="415892223@qq.com" />
+    </bean>
+
+
+    <bean name="mailService" class="online.shixun.ssmresume.server.impl.MailService"/>
+</beans>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="online.shixun.ssmresume.mapper.SkillMapper">
+    <resultMap id="SkillMapper" type="skill">
+    <id column="skill_id" property="id"/>
+    <result column="skill_createtime" property="createtime"/>
+    <result column="skill_language" property="language"/>
+    <result column="skill_name" property="name"/>
+    <result column="skill_level" property="level"/>
+    <result column="skill_indexNo" property="indexNo"/>
+    </resultMap>
+    <select id="findSkill" parameterType="skill" resultMap="SkillMapper">
+        SELECT * FROM t_skill
+    </select>
+
+    <update id="updateSkill" parameterType="skill">
+        update
+        t_skill
+        <set>
+            <if test="name!=null">
+                name=#{name},
+            </if>
+            <if test="level!=null">
+                level =#{level},
+            </if>
+            <if test="indexNo!=null">
+                indexNo =#{indexNo},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+</mapper>
