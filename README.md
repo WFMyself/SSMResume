@@ -1,3 +1,11 @@
+赢在面试之Java基础篇（1） 		             	             
+		         编辑词条			        		             		                		                 		                		                 重命名词条
+转移分类
+						        				                        				                             显示权限设置
+		                     
+		             		         
+	                                                                		    		     	         	         	        	        	             转载：https://mp.weixin.qq.com/s/zzqnVujjwGOCFdH7fn8RTA 
+
 1、一个".java"源文件中是否可以包括多个类（不是内部类）？有什么限制？
 
         可以有多个类，但只能有一个public的类，并且public的类名必须与文件名相一致。
